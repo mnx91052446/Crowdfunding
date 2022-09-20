@@ -6,7 +6,6 @@ pragma experimental ABIEncoderV2;
 
 //合約名稱記得要使用大寫
 contract DreamCyut {
-    //鏡像字串 => 專案名稱
     mapping (string => Project) public projects;
 
     uint public do_count = 0;
@@ -50,7 +49,19 @@ contract DreamCyut {
         delete pj_List;
         do_count += 1;
         emit NewDonate(pj_name, sponsor, teenager, amount);
-
-        
     }
+
+    function project_detail(string memory pj_name) public view returns(Project memory) {
+        return projects[pj_name];
+    }
+
+    function get_do_record(string memory pj_name) public view returns(Donate_record[] memory) {
+        return records[pj_name];
+    }
+    //測試用函式
+    function testCode() public pure returns (string memory) {
+        return 'success!';
+    }
+
+    
 }
